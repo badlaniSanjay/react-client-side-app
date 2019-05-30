@@ -1,0 +1,23 @@
+.off-white {
+  background-color: #f8f9fa;
+}
+
+
+.bellow-add-button {
+position: fixed;
+
+transition: all 0.2s ease-in 0s;
+z-index: 9999;
+cursor: pointer;
+border-radius:43px;
+background-color:red;
+padding : 22px;
+box-shadow: 3px 3px 3px #999;
+right: 18px;
+bottom: 18px;
+}
+
+.small-size{
+	font-size: x-small;
+	float: center;
+}
