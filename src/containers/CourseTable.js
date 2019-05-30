@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import CourseRow from "../components/CourseRow";
 import CourseService from '../services/CourseService';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 
 const Courses = CourseService.getInstance().findAllCourses();
@@ -22,17 +23,18 @@ class CourseTable extends Component{
     }
 
     createCourse = () =>{
+
+        this.state.course.id = new Date().getTime();
+
         this.setState({
-            course:{
-                id:(new Date().getTime())
-            }
-                      })
-        this.setState({
+
             courses : CourseService.getInstance().createCourse(this.state.course)
                       })
+
         this.setState({
                           course:{
-                              title:'New Course'
+                              title:'New Course',
+                              id: new Date().getTime()
                           }
                       })
     }
@@ -40,7 +42,8 @@ class CourseTable extends Component{
     changeTitle = (event) =>{
         this.setState({
             course:{
-                title:event.target.value
+                title:event.target.value,
+                id: new Date().getTime()
             }
                       })
     }
@@ -58,11 +61,12 @@ class CourseTable extends Component{
         return (
 
 
-            <div className="container-fluid">
+
+            <div className="container-fluid ">
 
 
                 <div className="bg-primary  sticky-top list-group">
-                    <li className="list-group-item  off-white bg-primary">
+                    <li className="list-group-item  bg-primary">
                         <div className="row text-light">
 
                             <div className="col-md-2">
@@ -97,8 +101,12 @@ class CourseTable extends Component{
                                     <div className="col-2">Owned By <i
                                         className="fa fa-sort-down"></i></div>
                                     <div className="col-3">Last Modified By me</div>
+
                                     <div className="col-1">
-                                        <i className="fa fa-grip-horizontal fa-2x"></i></div>
+                                        <Link to="/CourseGrid">
+                                            <i className="fa fa-th fa-2x cg-grey" ></i>
+                                        </Link>
+                                    </div>
                                     <div className="col-1">
             <span className="small-size">
             <div className="row h-33 center"><i className="fa fa-angle-up"></i></div>
@@ -114,7 +122,7 @@ class CourseTable extends Component{
                 </div>
 
 
-                <div >
+                <div className=' off-white scroll-max-height'>
                     <div className="row">
                         <div className="col-sm-1"></div>
                         <div className="col-sm-10">
@@ -126,7 +134,7 @@ class CourseTable extends Component{
                     </div>
                 </div>
 
-                <div className="bellow-add-button"><i className="fa fa-plus text-light"></i></div>
+                <div className="bellow-add-button" onClick= {this.createCourse}><i className="fa fa-plus text-light"></i></div>
 
 
             </div>

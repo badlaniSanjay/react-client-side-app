@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import CourseCard from '../components/CourseCard';
 import CourseService from '../services/CourseService';
 import CourseRow from "./CourseTable";
+import {Link} from "react-router-dom";
 
 const Courses = CourseService.getInstance().findAllCourses();
 
@@ -22,17 +23,18 @@ class CourseGrid extends Component {
     }
 
     createCourse = () =>{
+
+        this.state.course.id = new Date().getTime();
+
         this.setState({
-                          course:{
-                              id:(new Date().getTime())
-                          }
-                      })
-        this.setState({
+
                           courses : CourseService.getInstance().createCourse(this.state.course)
                       })
+
         this.setState({
                           course:{
-                              title:'New Course'
+                              title:'New Course',
+                              id: new Date().getTime()
                           }
                       })
     }
@@ -40,7 +42,8 @@ class CourseGrid extends Component {
     changeTitle = (event) =>{
         this.setState({
                           course:{
-                              title:event.target.value
+                              title:event.target.value,
+                              id: new Date().getTime()
                           }
                       })
     }
@@ -50,6 +53,7 @@ class CourseGrid extends Component {
                           courses : CourseService.getInstance().deleteCourse(id)
                       })
     }
+
 
 
     render() {
@@ -97,13 +101,18 @@ class CourseGrid extends Component {
                                         className="fa fa-sort-down"></i></div>
                                     <div className="col-3">Last Modified By me</div>
                                     <div className="col-1">
-                                        <i className="fa fa-grip-horizontal fa-2x"></i></div>
+
+                                            <i className="fa fa-th fa-2x " ></i>
+
+                                    </div>
                                     <div className="col-1">
-            <span className="small-size">
+                                <Link to="/CourseTable">
+            <span className="small-size cg-grey">
             <div className="row h-33 center"><i className="fa fa-angle-up"></i></div>
             <div className="row h-33">A-Z</div>
             <div className="row h-33 center"><i className="fa fa-angle-down"></i></div>
             </span>
+                                </Link>
                                     </div>
                                 </div>
                                 <div className="col-2"></div>
@@ -112,7 +121,7 @@ class CourseGrid extends Component {
                     </li>
                 </div>
 
-                <div>
+                <div className="off-white scroll-max-height">
                     <div className="row">
                         <div className="col-sm-1"></div>
                         <div className="col-sm-10">
@@ -124,7 +133,7 @@ class CourseGrid extends Component {
                     </div>
                 </div>
 
-                <div className="bellow-add-button"><i className="fa fa-plus text-light"></i></div>
+                <div className="bellow-add-button" onClick= {this.createCourse}><i className="fa fa-plus text-light"></i></div>
 
 
             </div>

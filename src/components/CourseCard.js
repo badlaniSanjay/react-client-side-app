@@ -13,7 +13,7 @@ const CourseCard = ({course, deleteCourse}) => {
                             {course.title}
                         </Link>
                     </h5>
-                    <p className="card-text">Hello React World</p>
+                    <p className="card-text">Last Updated on 12:45</p>
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">

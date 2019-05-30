@@ -1,7 +1,14 @@
 .off-white {
   background-color: #f8f9fa;
-}
 
+}
+.cg-grey{
+	color:gray;
+}
+.scroll-max-height{
+	  height: 1000px;
+	  overflow-y: scroll;
+  }
 
 .bellow-add-button {
 position: fixed;
