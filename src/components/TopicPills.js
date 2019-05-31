@@ -23,11 +23,13 @@ class TopicPills extends Component{
     render(){
 
         return (
-        <div className="list-group text-white">{
+        <div >
+            {
             this.state.lesson.topics.map( (eachTopic, index) => <div className='list-group-item' key={index} >
             {eachTopic.title}
             </div>
         )}
+
         </div>
     )
     }

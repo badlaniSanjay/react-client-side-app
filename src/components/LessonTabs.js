@@ -7,12 +7,12 @@ class LessonTabs extends Component {
         super(props);
 
         this.state = {
-            allLessons: [{
+            allLessons: {
                 courseId: props.match.params.id,
                 lessons: props.lessons.find(lessons => lessons.id == props.match.params.lessonId),
                 id: (new Date()).getTime(),
                 lessonId: props.match.params.lessonId
-            }]
+            }
         }
     }
 
@@ -20,22 +20,16 @@ class LessonTabs extends Component {
 
         return (<div className="btn-group text-secondary">
 
+
                 {
-                    this.state.allLessons.map((state, index, key) =>
-                                                  <span key={index}>
-
-          {state.lessons.lessons.map((lessons, index) =>
-                                         <Link key={index}
-                                               className="text-white btn"
-                                               onClick={() => this.checkelement(index)}
-                                               to={`/CourseEditor/${state.courseId}/LessonTabs/${state.lessonId}/TopicPills/${lessons.id}`}>
-                                             {lessons.title}
-                                         </Link>)
-          }
-
-          </span>)
+                    this.state.allLessons.lessons.lessons.map((lessons, index) =>
+                    <Link key={index}
+                    className="text-white btn"
+                    onClick={() => this.checkelement(index)}
+                    to={`/CourseEditor/${this.state.allLessons.courseId}/LessonTabs/${this.state.allLessons.lessonId}/TopicPills/${lessons.id}`}>
+                    {lessons.title}
+                    </Link>)
                 }
-
 
             </div>
 

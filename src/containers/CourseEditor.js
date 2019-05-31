@@ -78,15 +78,15 @@ class CourseEditor extends Component {
                     <li className="list-group-item bg-primary bg-dark">
                         <div className="row text-light">
 
-                            <div className="col-lg-1">
+                            <div className="col-md-1">
                                 <i className="fa fa-times"></i>
                             </div>
-                            <div className="col-lg-3 ">
+                            <div className="col-md-3 ">
                                 <h3>Course CourseId</h3>
                             </div>
 
 
-                            <div className="col-lg-7">
+                            <div className="col-md-7">
                                 <Router>
                                     <Route
                                         path={`/CourseEditor/:id/LessonTabs/:lessonId`}
@@ -96,9 +96,11 @@ class CourseEditor extends Component {
 
                             </div>
 
-                            <div className="col-lg-1">
+                            <div className="col-md-1">
 
+                                <h2>
                                 <i className="fa fa-plus fa-stack-1x"></i>
+                                </h2>
                             </div>
 
                         </div>
