@@ -15,7 +15,7 @@ class WidgetService {
 
     createWidget = widget => {
 
-        this.widgets.push(widget);
+        this.widgets = [ ...this.widgets, widget]
         return this.widgets;
     }
     findAllWidgets = () => {

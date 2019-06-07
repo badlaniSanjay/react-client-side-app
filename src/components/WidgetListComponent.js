@@ -32,7 +32,7 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget,
         {
             widgets.map((widget, index) =>
 
-                <div className="list-group-item m-5" key={widget.id}>
+                <div className="list-group-item my-3" key={widget.id}>
                     <div style=
                              {{display: edit === "0"
                                      ? 'block': 'none'}}>
@@ -116,13 +116,19 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget,
         }
 
 
-        <div className='list-group-item '>
+        <div className='list-group-item ' style=
+            {{display: edit === "0"
+                    ? 'block': 'none'}}>
             <div className="row">
+                <div className="col-10"></div>
+                <div className="col-2">
             <button onClick={() => createWidget()}>
                 Add
             </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 export default WidgetListComponent

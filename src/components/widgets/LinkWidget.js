@@ -8,7 +8,7 @@ const LinkWidget = ({widget, updateWidget, edit}) =>
                          ? 'block': 'none'}}>
         <div className= "row">
             <label htmlFor="linkUrlFld"> Link Url </label>
-            <input id="linkUrlFld" className="form-control"  placeholder = "http://lorempixel.com/300/150/" defaultValue={widget.text}
+            <input id="linkUrlFld" className="form-control"  placeholder = "Link URL" defaultValue={widget.text}
                    onChange={(event) => updateWidget({...widget, text: event.target.value})}
             />
         </div>

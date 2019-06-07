@@ -8,7 +8,7 @@ const ParagraphWidget = ({widget, updateWidget, edit}) =>
                          ? 'block': 'none'}}>
             <div className= "row">
                     <label htmlFor="paragraphTextFld"> Paragraph Text</label>
-                    <textArea id="paragraphTextFld" className="form-control"  placeholder = "Loren ipsum" defaultValue={widget.text}
+                    <textarea id="paragraphTextFld" className="form-control"  placeholder = "Paragraph Text" defaultValue={widget.text}
                            onChange={(event) => updateWidget({...widget, text: event.target.value})}
                     />
             </div>

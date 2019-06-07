@@ -15,7 +15,7 @@ const ListWidget = ({widget, updateWidget, edit}) =>
         <div className= "row">
             <label htmlFor="listTypeFld"> List Type</label>
             <select id="listTypeFld" className="form-control" defaultValue= "Unordered List" value ={widget.listType}
-                    defaultValue={widget.type} onChange={(event) => updateWidget({...widget, listType: event.target.value})}>
+                    defaultValue="Unordered List" onChange={(event) => updateWidget({...widget, listType: event.target.value})}>
                 <option value="Unordered List">Unordered List</option>
                 <option value="Ordered List">Ordered List</option>
             </select>

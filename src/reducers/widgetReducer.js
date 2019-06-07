@@ -15,16 +15,17 @@ const widgetReducer = (state={widgets: widgets, edit:"0"}, action) => {
     } else if(action.type === 'CREATE_WIDGET') {
 
         return {
-            widgets: [
-                ...state.widgets,
-                {
-                    id: (new Date()).getTime(),
-                    name: 'New Widget',
-                    type: 'HEADING'
-                }
-            ],
-            edit: state.edit
-            //  widgets : widgetService.createWidget(action.widget)
+            // widgets: [
+            //     ...state.widgets,
+            //     {
+            //         id: (new Date()).getTime(),
+            //         name: 'New Widget',
+            //         type: 'HEADING'
+            //     }
+            // ],
+            // edit: state.edit
+              widgets : widgetService.createWidget(action.widget),
+            edit:state.edit
         }
     } else if(action.type === 'UPDATE_WIDGET') {
         return {

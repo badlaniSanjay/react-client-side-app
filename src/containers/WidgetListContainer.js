@@ -16,7 +16,10 @@ const propsToDispatcher = dispatch => ({
             widget: {
                 id: (new Date()).getTime(),
                 name: 'New Widget',
-                type: 'HEADING'
+                type: 'HEADING',
+                headingSize: "Heading 1",
+                webLink: "",
+                listType: "Unordered List"
             }
         })
     },
