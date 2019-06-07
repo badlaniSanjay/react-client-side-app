@@ -28,3 +28,19 @@ bottom: 18px;
 	font-size: x-small;
 	float: center;
 }
+
+.bg-dark{
+	background-color: "gray";
+}
+
+.full-height{
+	height:100%
+}
+
+.wbdv-hidden{
+	display : none;
+}
+
+.flexible {
+	display: flex;
+}

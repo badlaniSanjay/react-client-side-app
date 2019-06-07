@@ -4,9 +4,14 @@ import CourseService from '../services/CourseService';
 import LessonTabs from '../components/LessonTabs';
 import ModuleList from "../components/ModuleList";
 import TopicPills from "../components/TopicPills";
+import WidgetListContainer from "./WidgetListContainer";
+import widgetReducer from "../reducers/widgetReducer";
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 const Courses = CourseService.getInstance().findAllCourses();
+const store = createStore(widgetReducer)
 
 class CourseEditor extends Component {
 
@@ -121,6 +126,10 @@ class CourseEditor extends Component {
                                    render={(props) => <TopicPills {...props} lessons={this.state.Course.modules}/>}
                             />
                         </Router>
+
+                        <Provider store={store}>
+                            <WidgetListContainer />
+                        </Provider>
                     </div>
                 </div>
             </div>
