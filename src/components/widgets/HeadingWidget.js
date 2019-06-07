@@ -7,25 +7,14 @@ const HeadingWidget = ({widget, updateWidget, edit}) =>
         <div style=
                  {{display: edit === "0"
                          ? 'block': 'none'}}>
-        <div className="row">
-            <div className="col"></div>
-            <div className="col-2 float-right"  >
-                <button onCLick={() => updateWidget(widget)}>
-                save
-                </button>
-            </div>
-            <div className="col-2 float-right">
-                <i className="fa fa-pencil" aria-hidden="true"></i>
-            </div>
-        </div>
 
         <div className= "row">
-            <label> Heading Text</label>
+            <label htmlFor="headingTextFld"> Heading Text</label>
             <input id="headingTextFld" className="form-control"  placeholder = "Heading Text"  defaultValue={widget.text}
                    onChange={(event) => updateWidget({...widget, text: event.target.value})} />
         </div>
         <div className= "row">
-            <label> Heading Size</label>
+            <label htmlFor="headingSizeFld"> Heading Size</label>
             <select id="headingSizeFld" className="form-control" defaultValue= {widget.headingSize}
                     onChange={(event) => updateWidget({...widget, headingSize: event.target.value})}>
                 <option value="Heading 1">Heading 1</option>
@@ -34,22 +23,29 @@ const HeadingWidget = ({widget, updateWidget, edit}) =>
             </select>
         </div>
         <div className= "row">
-            <label> Widget Name</label>
+            <label htmlFor="widgetNameFld"> Widget Name</label>
             <input id="widgetNameFld" className="form-control"  placeholder = "Widget Name" defaultValue={widget.name}
                    onChange={(event) => updateWidget({...widget, name: event.target.value})}
             />
         </div>
         </div>
+        <div className="my-3 mx-2">
         <div className= "row">
             <div style=
                      {{display: edit === "0"
                              ? 'block': 'none'}}>
-            <h3>Preview</h3>
-            </div>
 
+            <h3>Preview</h3>
+
+            </div>
+        </div>
+          <div className= "row">
+            <div>
             {widget.headingSize === "Heading 3" && <h3>{widget.text}</h3>}
             {widget.headingSize === "Heading 2" && <h2>{widget.text}</h2>}
             {widget.headingSize === "Heading 1" && <h1>{widget.text}</h1>}
+            </div>
+        </div>
         </div>
     </div>
 

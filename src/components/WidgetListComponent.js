@@ -13,16 +13,17 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget,
         <div className="col"></div>
 
         <div className="col-2 float-right">
-            Preview
+
             <div style=
                      {{display: edit === "1"
                              ? 'block': 'none'}}>
-            <i className="fa fa-toggle-off" aria-hidden="true" onClick={()=>enableEditing("0")}></i>
+            <i className="fa fa-toggle-off fa-2x" aria-hidden="true" onClick={()=>enableEditing("0")}></i>
+
             </div>
             <div style=
                      {{display: edit === "0"
                              ? 'block': 'none'}}>
-            <i className="fa fa-toggle-on" aria-hidden="true" onClick={()=>enableEditing("1")}></i>
+            <i className="fa fa-toggle-on fa-2x" aria-hidden="true" onClick={()=>enableEditing("1")}></i>
             </div>
         </div>
     </div>
@@ -31,28 +32,42 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget,
         {
             widgets.map((widget, index) =>
 
-                <div className="list-group-item" key={widget.id}>
+                <div className="list-group-item m-5" key={widget.id}>
                     <div style=
                              {{display: edit === "0"
                                      ? 'block': 'none'}}>
 
 
                     <div className="row">
-                        <div className="col">
-                        {widget.type} widget
+                        <div className="col-sm-8 text-bold">
+                            <div className="row text-bold">
+                                {widget.type === 'HEADING' && <h2>Heading widget</h2>}
+                                {widget.type === 'PARAGRAPH' && <h2>Paragraph widget</h2>}
+                                {widget.type === 'LINK' && <h2>Link widget</h2>}
+                                {widget.type === 'LIST' && <h2> List widget</h2>}
+                                {widget.type === 'IMAGE' && <h2>Image widget</h2>}
+                            </div>
 
-                            {/*<h6>{widgets.findIndex(widget)}</h6>*/}
+
                         </div>
-                        <div >
-                     <div className="btn col-0.5 float-right">
-                         {index != 0 &&  <i className="fa fa-arrow-up " aria-hidden="true" onClick={() => reorderItems(-1, widget.id)} ></i>}
-                     </div>
-                    </div>
-                        <div className="btn col-0.5 float-right">
-                            {index != widgets.length -1 &&   <i className="fa fa-arrow-down" aria-hidden="true" onClick={() => reorderItems(1, widget.id)}></i>}
-                        </div>
-                        <div className="float-right col-1">
-                    <select
+
+                     <div className="btn col-sm-4">
+
+                          <span className="fa-stack mx-2" onClick={() => reorderItems(-1, widget.id)} >
+                              {index != 0 && <i className="fa fa-square fa-stack-2x"></i>}
+                              {index != 0 && <i className="fa fa-arrow-up  fa-stack-1x fa-inverse"></i>}
+                             </span>
+
+
+
+
+                             <span className="fa-stack mx-2" onClick={() => reorderItems(1, widget.id)} >
+                             { index!= widgets.length -1  &&<i className="fa fa-square fa-stack-2x"></i>}
+                             { index!= widgets.length -1  &&<i className="fa fa-arrow-down  fa-stack-1x fa-inverse"></i>}
+                             </span>
+
+
+                    <select className="mx-2"
                         onChange={(event) => updateWidget({...widget, type: event.target.value})}
                         value={widget.type}>
                         <option value="HEADING">Heading</option>
@@ -61,14 +76,17 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget,
                         <option value="LIST">List</option>
                         <option value="LINK">Link</option>
                     </select>
-                    </div>
-                        <div className="float-right col-1">
-                    <button
-                        onClick={() => deleteWidget(widget.id)}>
-                        Delete
-                    </button>
+
+
+
+                         <span className="fa-stack mx-2" onClick={() => deleteWidget(widget.id)}>
+            <i className="fa fa-circle fa-stack-2x text-danger"></i>
+            <i className="fa fa-trash fa-stack-1x text-white"></i>
+          </span>
+
                         </div>
                     </div>
+
                     </div>
                     <div className="row">
                     {
@@ -98,10 +116,12 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget,
         }
 
 
-        <div className='list-group-item'>
+        <div className='list-group-item '>
+            <div className="row">
             <button onClick={() => createWidget()}>
                 Add
             </button>
+            </div>
         </div>
     </div>
 </div>

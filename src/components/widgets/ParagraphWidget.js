@@ -7,27 +7,31 @@ const ParagraphWidget = ({widget, updateWidget, edit}) =>
                  {{display: edit === "0"
                          ? 'block': 'none'}}>
             <div className= "row">
-                    <label> Paragraph Text</label>
-                    <input id="paragraphTextFld" className="form-control"  placeholder = "Loren ipsum" defaultValue={widget.text}
+                    <label htmlFor="paragraphTextFld"> Paragraph Text</label>
+                    <textArea id="paragraphTextFld" className="form-control"  placeholder = "Loren ipsum" defaultValue={widget.text}
                            onChange={(event) => updateWidget({...widget, text: event.target.value})}
                     />
             </div>
 
             <div className= "row">
-                    <label> Widget Name</label>
+                    <label htmlFor="widgetNameFld"> Widget Name</label>
                     <input id="widgetNameFld" className="form-control"  placeholder = "Widget Name" value={widget.name}
                            onChange={(event) => updateWidget({...widget, name: event.target.value})}
                     />
             </div>
         </div>
-            <div className= "row">
+        <div className="my-3 mx-2">
+            <div className= "row ">
                 <div style=
                          {{display: edit === "0"
                                  ? 'block': 'none'}}>
                     <h3>Preview</h3>
                 </div>
+            </div>
+        <div className="row ">
                 <p>{widget.text}</p>
             </div>
+        </div>
     </div>
 
 export default ParagraphWidget

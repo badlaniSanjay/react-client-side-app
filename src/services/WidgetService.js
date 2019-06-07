@@ -34,6 +34,9 @@ class WidgetService {
     }
     reorderItems = (direction, wid )=>{
         const position = this.widgets.findIndex((i) => i.id === wid)
+        if(position === 0 && direction === -1){
+        return this.widgets;
+        }
         const item = this.widgets[position] // save item for later
         this.widgets = this.widgets.filter((i) => i.id != wid) // remove item from array
 

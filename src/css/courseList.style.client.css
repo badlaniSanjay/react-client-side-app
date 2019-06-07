@@ -44,3 +44,7 @@ bottom: 18px;
 .flexible {
 	display: flex;
 }
+
+.fa-square {
+	color: #ffae42;
+}
