@@ -13,25 +13,51 @@ class WidgetService {
         return this.myInstance;
     }
 
-    createWidget = widget => {
-
-        this.widgets = [ ...this.widgets, widget]
-        return this.widgets;
-    }
     findAllWidgets = () => {
-        return this.widgets;
-    }
+             return fetch("http://localhost:8080/api/widgets")
+                .then(response => response.json())
+                }
+
+        deleteWidget = wid => {
+            return fetch(`http://localhost:8080/api/widgets/${wid}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            }
+
+
+
     findWidgetById = wid => {
-        return this.widgets.find(widget => widget.id == wid);
-    }
+        return fetch("http://localhost:8080/api/widgets/${wid}")
+                        .then(response => response.json())
+                        }
+
+
     updateWidget = (wid, newWidget) => {
-        this.widgets = this.widgets.map(widget => widget.id == wid ? newWidget : widget);
-        return this.widgets;
-    }
-    deleteWidget = wid => {
-        this.widgets = this.widgets.filter(widget => widget.id != wid)
-        return this.widgets;
-    }
+          return fetch(`http://localhost:8080/api/widgets/${wid}`, {
+                         method: 'PUT',
+                         body: JSON.stringify(newWidget) ,
+
+                         headers: {
+                                'content-type': 'application/json'
+                                 }
+                          })
+          .then(response => response.json())
+                               }
+
+    createWidget = (widget) => {
+                return fetch(`http://localhost:8080/api/widgets`, {
+                                         method: 'POST',
+                                         body: JSON.stringify(widget),
+                                         headers: {
+                                                         'content-type': 'application/json'
+                                                     }
+                                          })
+                          .then(response => response.json())
+                                               }
+
+
+
     reorderItems = (direction, wid )=>{
         const position = this.widgets.findIndex((i) => i.id === wid)
         if(position === 0 && direction === -1){
