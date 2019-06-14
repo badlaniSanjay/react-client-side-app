@@ -16,7 +16,7 @@ const HeadingWidget = ({widget, updateWidget, edit}) =>
         <div className= "row">
             <label htmlFor="headingSizeFld"> Heading Size</label>
             <select id="headingSizeFld" className="form-control" defaultValue= {widget.headingSize}
-                    onChange={(event) => updateWidget({...widget, headingSize: event.target.value})}>
+                    onChange={(event) => updateWidget({...widget, size: event.target.value})}>
                 <option value="Heading 1">Heading 1</option>
                 <option value="Heading 2">Heading 2</option>
                 <option value="Heading 3">Heading 3</option>
@@ -41,9 +41,9 @@ const HeadingWidget = ({widget, updateWidget, edit}) =>
         </div>
           <div className= "row">
             <div>
-            {widget.headingSize === "Heading 3" && <h3>{widget.text}</h3>}
-            {widget.headingSize === "Heading 2" && <h2>{widget.text}</h2>}
-            {widget.headingSize === "Heading 1" && <h1>{widget.text}</h1>}
+            {widget.size === "Heading 3" && <h3>{widget.text}</h3>}
+            {widget.size === "Heading 2" && <h2>{widget.text}</h2>}
+            {widget.size === "Heading 1" && <h1>{widget.text}</h1>}
             </div>
         </div>
         </div>

@@ -14,10 +14,10 @@ const ListWidget = ({widget, updateWidget, edit}) =>
         </div>
         <div className= "row">
             <label htmlFor="listTypeFld"> List Type</label>
-            <select id="listTypeFld" className="form-control" defaultValue= "Unordered List" value ={widget.listType}
-                    defaultValue="Unordered List" onChange={(event) => updateWidget({...widget, listType: event.target.value})}>
-                <option value="Unordered List">Unordered List</option>
-                <option value="Ordered List">Ordered List</option>
+            <select id="listTypeFld" className="form-control" defaultValue= "Unordered_List" value ={widget.listType}
+                    defaultValue="Unordered_List" onChange={(event) => updateWidget({...widget, dataType: event.target.value})}>
+                <option value="Unordered_List">Unordered List</option>
+                <option value="Ordered_List">Ordered List</option>
             </select>
         </div>
         <div className= "row">
@@ -36,9 +36,9 @@ const ListWidget = ({widget, updateWidget, edit}) =>
             </div>
         </div>
         <div className="row">
-            {widget.listType === "Unordered List" && <ul> {widget.text.split("\n").map((item) => <li>{item}</li>)}</ul>}
+            {widget.dataType === "Unordered_List" && <ul> {widget.text.split("\n").map((item) => <li>{item}</li>)}</ul>}
 
-            {widget.listType === "Ordered List" && <ol> {widget.text.split("\n").map((item) => <li>{item}</li>)}</ol>}
+            {widget.dataType === "Ordered_List" && <ol> {widget.text.split("\n").map((item) => <li>{item}</li>)}</ol>}
         </div>
         </div>
     </div>

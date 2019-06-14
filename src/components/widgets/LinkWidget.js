@@ -9,14 +9,14 @@ const LinkWidget = ({widget, updateWidget, edit}) =>
         <div className= "row">
             <label htmlFor="linkUrlFld"> Link Url </label>
             <input id="linkUrlFld" className="form-control"  placeholder = "Link URL" defaultValue={widget.text}
-                   onChange={(event) => updateWidget({...widget, text: event.target.value})}
+                   onChange={(event) => updateWidget({...widget, src: event.target.value})}
             />
         </div>
 
         <div className= "row">
             <label htmlFor="linkTextFld"> Link Text</label>
             <input id="linkTextFld" className="form-control"  placeholder = "Link Text" defaultValue={widget.webLink}
-                   onChange={(event) => updateWidget({...widget, webLink: event.target.value})}
+                   onChange={(event) => updateWidget({...widget, text: event.target.value})}
             />
         </div>
 
@@ -35,7 +35,7 @@ const LinkWidget = ({widget, updateWidget, edit}) =>
             </div>
         </div>
         <div className="row">
-            <a href={widget.webLink}>{widget.text}</a>
+            <a href={widget.src}>{widget.text}</a>
         </div>
         </div>
     </div>
