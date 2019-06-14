@@ -44,7 +44,7 @@ const propsToDispatcher = dispatch => ({
                 type: 'HEADING',
                 order: 1,
                 text: 'Hello New Heading World',
-                size: 1,
+                size: "Heading 1",
                 url: "https://picsum.photos/300/200",
                 height:200,
                 width:200,
