@@ -14,28 +14,45 @@ export default class CourseService{
     }
 
     createCourse = course => {
-        this.courses.push(course)
-        return this.courses;
+        return fetch(`http://localhost:8080/api/courses`, {
+            method: 'POST',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
     }
 
     findAllCourses = () => {
-        return this.courses;
+        return fetch("http://localhost:8080/api/courses")
+            .then(response => response.json())
     }
 
-    findCourseById = (id) => {
+    findCourseById = (cid) => {
 
-        return this.courses.filter(course => course.id == id);
+        return fetch("http://localhost:8080/api/courses/"+cid)
+            .then(response => response.json())
     }
 
-    updateCourse = (id, course) => {
+    updateCourse = (cid, course) => {
 
-        return this.courses;
+        return fetch("http://localhost:8080/api/courses/"+cid, {
+            method: 'PUT',
+            body: JSON.stringify(course) ,
+
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
     }
 
-    deleteCourse = (id) => {
-
-        this.courses = this.courses.filter( course => course.id != id);
-        return this.courses;
+    deleteCourse = (cid) => {
+        return fetch("http://localhost:8080/api/courses/"+cid, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
     }
 
 }

@@ -10,6 +10,7 @@ class CourseTable extends Component{
 
     constructor(){
         super();
+
         this.state = {
 
             course:{
@@ -17,8 +18,13 @@ class CourseTable extends Component{
                 title:'New Course',
                 modules:[]
             },
-            courses :Courses
+            courses : null
         }
+
+        CourseService.getInstance().findAllCourses().then(courses => this.setState({
+
+            courses : Array.from(courses)
+        }))
 
     }
 
@@ -26,32 +32,51 @@ class CourseTable extends Component{
 
         this.state.course.id = new Date().getTime();
 
-        this.setState({
+        CourseService.getInstance().createCourse(this.state.course).then(courses => this.setState({
+            courses: Array.from(courses),
+            course:{
+                title:'New Course',
+                id: new Date().getTime()
+            }
+        }))
 
-            courses : CourseService.getInstance().createCourse(this.state.course)
-                      })
+        // this.setState({
+        //
+        //     courses : CourseService.getInstance().createCourse(this.state.course)
+        //               })
 
-        this.setState({
-                          course:{
-                              title:'New Course',
-                              id: new Date().getTime()
-                          }
-                      })
+        // this.setState({
+        //                   course:{
+        //                       title:'New Course',
+        //                       id: new Date().getTime()
+        //                   }
+        //               })
     }
 
     changeTitle = (event) =>{
+
         this.setState({
             course:{
                 title:event.target.value,
                 id: new Date().getTime()
             }
                       })
+        // CourseService.getInstance().updateCourse(this.state.coid, this.state.course).then(courses =>this.setState({
+        //     courses: courses,
+        //     course:{
+        //         title:'New Course',
+        //         id: new Date().getTime()
+        //     }
+        // }))
     }
 
     deleteCourse = (id) =>{
-        this.setState({
-            courses : CourseService.getInstance().deleteCourse(id)
-                      })
+
+            CourseService.getInstance().deleteCourse(id).then(courses => this.setState({
+                courses: Array.from(courses),
+
+            }))
+
     }
 
 
@@ -127,7 +152,8 @@ class CourseTable extends Component{
                         <div className="col-sm-1"></div>
                         <div className="col-sm-10">
                             <div className="list-group">
-                                {this.state.courses.map(course => <CourseRow course={course} key={course.id} deleteCourse ={this.deleteCourse}  />)}
+
+                                {this.state.courses && this.state.courses.map(course => <CourseRow course={course} key={course.id} deleteCourse ={this.deleteCourse}  />)}
                             </div>
                         </div>
                         <div className="col-sm-1"></div>

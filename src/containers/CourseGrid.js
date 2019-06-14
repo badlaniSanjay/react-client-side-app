@@ -8,8 +8,10 @@ const Courses = CourseService.getInstance().findAllCourses();
 
 class CourseGrid extends Component {
 
+
     constructor(){
         super();
+
         this.state = {
 
             course:{
@@ -17,8 +19,13 @@ class CourseGrid extends Component {
                 title:'New Course',
                 modules:[]
             },
-            courses :Courses
+            courses : null
         }
+
+        CourseService.getInstance().findAllCourses().then(courses => this.setState({
+
+            courses : Array.from(courses)
+        }))
 
     }
 
@@ -26,18 +33,18 @@ class CourseGrid extends Component {
 
         this.state.course.id = new Date().getTime();
 
-        this.setState({
+        CourseService.getInstance().createCourse(this.state.course).then(courses => this.setState({
+            courses: Array.from(courses),
+            course:{
+                title:'New Course',
+                id: new Date().getTime()
+            }
+        }))
 
-                          courses : CourseService.getInstance().createCourse(this.state.course)
-                      })
 
-        this.setState({
-                          course:{
-                              title:'New Course',
-                              id: new Date().getTime()
-                          }
-                      })
     }
+
+
 
     changeTitle = (event) =>{
         this.setState({
@@ -49,9 +56,12 @@ class CourseGrid extends Component {
     }
 
     deleteCourse = (id) =>{
-        this.setState({
-                          courses : CourseService.getInstance().deleteCourse(id)
-                      })
+
+        CourseService.getInstance().deleteCourse(id).then(courses => this.setState({
+            courses: Array.from(courses),
+
+        }))
+
     }
 
 
@@ -126,7 +136,7 @@ class CourseGrid extends Component {
                         <div className="col-sm-1"></div>
                         <div className="col-sm-10">
                             <div className='card-columns'>
-                                {this.state.courses.map(course => <CourseCard key={course.id} course = {course} deleteCourse={this.deleteCourse}/>)}
+                                {this.state.courses && this.state.courses.map(course => <CourseCard key={course.id} course = {course} deleteCourse={this.deleteCourse}/>)}
                             </div>
                         </div>
                         <div className="col-sm-1"></div>

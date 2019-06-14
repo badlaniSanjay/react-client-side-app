@@ -29,8 +29,15 @@ class CourseEditor extends Component {
                 title: ""
             },
             CourseId: props.match.params.id,
-            Course: Courses.find(Course => Course.id === props.match.params.id)
+            // Course: CourseService.getInstance().findCourseById(props.match.params.id)
+            Course: null
         }
+
+        CourseService.getInstance().findCourseById(props.match.params.id).then(course => this.setState({
+
+            Course : course
+        }))
+
 
     }
 
@@ -91,7 +98,7 @@ class CourseEditor extends Component {
                             </div>
 
 
-                            <div className="col-md-7">
+                            { this.state.Course !== null && <div className="col-md-7">
                                 <Router>
                                     <Route
                                         path={`/CourseEditor/:id/LessonTabs/:lessonId`}
@@ -99,7 +106,7 @@ class CourseEditor extends Component {
                                     />
                                 </Router>
 
-                            </div>
+                            </div>}
 
                             <div className="col-md-1">
 
@@ -115,17 +122,17 @@ class CourseEditor extends Component {
 
                 <div className="row h-100">
                     <div className="col-4 h-100">
-                        <div>
+                        { this.state.Course !== null && <div>
                             {this.state.Course.modules.map(module => <ModuleList module ={module} key={module.id}
                              deleteModule={this.deleteModule} courseId={this.state.CourseId}/>)}
-                        </div>
+                        </div> }
                     </div>
                     <div className="col-8">
-                        <Router>
+                        { this.state.Course !== null &&  <Router>
                             <Route path={`/CourseEditor/:id/LessonTabs/:lessonId/TopicPills/:topicId`}
                                    render={(props) => <TopicPills {...props} lessons={this.state.Course.modules}/>}
                             />
-                        </Router>
+                        </Router> }
 
                         <Provider store={store}>
                             <WidgetListContainer />
