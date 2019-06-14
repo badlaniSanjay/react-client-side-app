@@ -14,7 +14,7 @@ export default class CourseService{
     }
 
     createCourse = course => {
-        return fetch(`http://localhost:8080/api/courses`, {
+        return fetch(`https://fierce-sea-47240.herokuapp.com/api/courses`, {
             method: 'POST',
             body: JSON.stringify(course),
             headers: {
@@ -25,19 +25,19 @@ export default class CourseService{
     }
 
     findAllCourses = () => {
-        return fetch("http://localhost:8080/api/courses")
+        return fetch("https://fierce-sea-47240.herokuapp.com/api/courses")
             .then(response => response.json())
     }
 
     findCourseById = (cid) => {
 
-        return fetch("http://localhost:8080/api/courses/"+cid)
+        return fetch("https://fierce-sea-47240.herokuapp.com/api/courses/"+cid)
             .then(response => response.json())
     }
 
     updateCourse = (cid, course) => {
 
-        return fetch("http://localhost:8080/api/courses/"+cid, {
+        return fetch("https://fierce-sea-47240.herokuapp.com/api/courses/"+cid, {
             method: 'PUT',
             body: JSON.stringify(course) ,
 
@@ -49,7 +49,7 @@ export default class CourseService{
     }
 
     deleteCourse = (cid) => {
-        return fetch("http://localhost:8080/api/courses/"+cid, {
+        return fetch("https://fierce-sea-47240.herokuapp.com/api/courses/"+cid, {
             method: 'DELETE'
         })
             .then(response => response.json())
