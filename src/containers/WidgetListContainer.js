@@ -43,7 +43,7 @@ const propsToDispatcher = dispatch => ({
                 name: 'New Widget ',
                 type: 'HEADING',
                 order: 1,
-                text: 'Hello New Heading World',
+                text: 'New ADDED WIDGET',
                 size: "Heading 1",
                 url: "https://picsum.photos/300/200",
                 height:200,
