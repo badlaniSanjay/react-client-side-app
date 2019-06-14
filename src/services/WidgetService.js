@@ -14,12 +14,12 @@ class WidgetService {
     }
 
     findAllWidgets = () => {
-             return fetch("http://localhost:8080/api/widgets")
+             return fetch("https://fierce-sea-47240.herokuapp.com/api/widgets")
                 .then(response => response.json())
                 }
 
         deleteWidget = wid => {
-            return fetch(`http://localhost:8080/api/widgets/${wid}`, {
+            return fetch(`https://fierce-sea-47240.herokuapp.com/api/widgets/${wid}`, {
                 method: 'DELETE'
             })
             .then(response => response.json())
@@ -28,13 +28,13 @@ class WidgetService {
 
 
     findWidgetById = wid => {
-        return fetch("http://localhost:8080/api/widgets/${wid}")
+        return fetch("https://fierce-sea-47240.herokuapp.com/api/widgets/${wid}")
                         .then(response => response.json())
                         }
 
 
     updateWidget = (wid, newWidget) => {
-          return fetch(`http://localhost:8080/api/widgets/${wid}`, {
+          return fetch(`https://fierce-sea-47240.herokuapp.com/api/widgets/${wid}`, {
                          method: 'PUT',
                          body: JSON.stringify(newWidget) ,
 
@@ -46,7 +46,7 @@ class WidgetService {
                                }
 
     createWidget = (widget) => {
-                return fetch(`http://localhost:8080/api/widgets`, {
+                return fetch(`https://fierce-sea-47240.herokuapp.com/api/widgets`, {
                                          method: 'POST',
                                          body: JSON.stringify(widget),
                                          headers: {
