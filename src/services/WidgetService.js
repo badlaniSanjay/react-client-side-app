@@ -4,8 +4,8 @@ class WidgetService {
 
     static myInstance = null;
     widgets = Widgets;
-    // apiString = "https://fierce-sea-47240.herokuapp.com";
-    apiString = "http://localhost:8080";
+    apiString = "https://fierce-sea-47240.herokuapp.com";
+    // apiString = "http://localhost:8080";
 
     static getInstance() {
         if (WidgetService.myInstance == null) {

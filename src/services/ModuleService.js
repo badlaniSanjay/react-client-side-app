@@ -4,7 +4,7 @@ import React from 'react'
 export default class ModuleService {
     static myInstance = null;
 
-    apiString = "https://fierce-sea-47240.herokuapp.com/";
+    apiString = "https://fierce-sea-47240.herokuapp.com";
     // apiString = "http://localhost:8080";
 
     static getInstance(){
