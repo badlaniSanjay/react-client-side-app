@@ -6,6 +6,7 @@ import ModuleList from "../components/ModuleList";
 import TopicPills from "../components/TopicPills";
 import WidgetListContainer from "./WidgetListContainer";
 import widgetReducer from "../reducers/widgetReducer";
+import ModuleService from "../services/ModuleService";
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
@@ -33,24 +34,24 @@ class CourseEditor extends Component {
             Course: null
         }
 
-        CourseService.getInstance().findCourseById(props.match.params.id).then(course => this.setState({
+        CourseService.getInstance().findCourseById(props.match.params.id)
+            .then(course => this.setState({
 
-            Course : course
-        }))
-
+                                              Course: course
+                                          }))
 
     }
 
     createModule = () => {
 
-        this.setState({
-
-                          module: {
-                              id: (new Date()).getTime(),
-                              lessons: []
-                          }
-
-                      })
+       ModuleService.getInstance().createModule(this.state.module).then(modules =>  this.setState({
+                                                                                     Course: {
+                                                                                         modules: modules
+                                                                                     },
+                                                                                module:{
+                                                                                    lessons: []
+                                                                                }
+                                                                                 }))
 
         this.setState({
                           Course: {
@@ -63,22 +64,25 @@ class CourseEditor extends Component {
         this.setState({
                           module: {
                               title: event.target.value,
-                              id: (new Date()).getTime(),
-                              lessons:[]
+                              lessons: []
 
                           }
                       })
     }
 
     deleteModule = (id) => {
-        this.setState({
-                          Course: {
-                              modules: this.state.Course.modules.filter(module => module.id != id)
-                          }
-                      })
+
+        ModuleService.getInstance().deleteModule(id).then(modules =>
+                                                              this.setState({
+                                                                                Course: {
+                                                                                    modules: modules
+                                                                                }
+                                                                            })
+        )
+
     }
 
-    createNewLesson = () =>{
+    createNewLesson = () => {
 
     }
 
@@ -94,15 +98,17 @@ class CourseEditor extends Component {
                                 <i className="fa fa-times"></i>
                             </div>
                             <div className="col-md-3 ">
-                                <h3>Course CourseId</h3>
+                                <h3>Course {this.state.CourseId}</h3>
                             </div>
 
 
-                            { this.state.Course !== null && <div className="col-md-7">
+                            {this.state.Course !== null && <div className="col-md-7">
                                 <Router>
                                     <Route
                                         path={`/CourseEditor/:id/LessonTabs/:lessonId`}
-                                        render={(props) => <LessonTabs {...props} lessons={this.state.Course.modules} createNewLesson={this.createNewLesson}/>}
+                                        render={(props) => <LessonTabs {...props}
+                                                                       lessons={this.state.Course.modules}
+                                                                       createNewLesson={this.createNewLesson}/>}
                                     />
                                 </Router>
 
@@ -111,7 +117,7 @@ class CourseEditor extends Component {
                             <div className="col-md-1">
 
                                 <h2>
-                                <i className="fa fa-plus fa-stack-1x"></i>
+                                    <i className="fa fa-plus fa-stack-1x"></i>
                                 </h2>
                             </div>
 
@@ -122,20 +128,36 @@ class CourseEditor extends Component {
 
                 <div className="row h-100">
                     <div className="col-4 h-100">
-                        { this.state.Course !== null && <div>
-                            {this.state.Course.modules.map(module => <ModuleList module ={module} key={module.id}
-                             deleteModule={this.deleteModule} courseId={this.state.CourseId}/>)}
-                        </div> }
+                        {this.state.Course !== null && <div>
+                            {this.state.Course.modules.map(
+                                module => <ModuleList module={module} key={module.id}
+                                                      deleteModule={this.deleteModule}
+                                                      courseId={this.state.CourseId}/>)}
+                            {/*<div className="row">*/}
+                                {/*<div className="col-8">*/}
+                                    {/*<input id="headingTextFld" className="form-control"*/}
+                                           {/*placeholder = "New Module"*/}
+                                           {/*onChange={(event) => this.state.changeTitle(event)} />*/}
+                                {/*</div>*/}
+                                {/*<div className="col-4" onClick={this.state.createModule}>*/}
+                                {/*<i className="fa fa-plus text-light"></i>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                        </div>
+
+                        }
                     </div>
                     <div className="col-8">
-                        { this.state.Course !== null &&  <Router>
-                            <Route path={`/CourseEditor/:id/LessonTabs/:lessonId/TopicPills/:topicId`}
-                                   render={(props) => <TopicPills {...props} lessons={this.state.Course.modules}/>}
+                        {this.state.Course !== null && <Router>
+                            <Route
+                                path={`/CourseEditor/:id/LessonTabs/:lessonId/TopicPills/:topicId`}
+                                render={(props) => <TopicPills {...props}
+                                                               lessons={this.state.Course.modules}/>}
                             />
-                        </Router> }
+                        </Router>}
 
                         <Provider store={store}>
-                            <WidgetListContainer />
+                            <WidgetListContainer/>
                         </Provider>
                     </div>
                 </div>

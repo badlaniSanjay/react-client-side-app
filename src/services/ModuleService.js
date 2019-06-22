@@ -1,24 +1,24 @@
 import React from 'react'
 
 
-export default class CourseService{
+export default class ModuleService {
     static myInstance = null;
 
     // apiString = "https://fierce-sea-47240.herokuapp.com/";
     apiString = "http://localhost:8080";
 
     static getInstance(){
-        if(CourseService.myInstance == null){
-            CourseService.myInstance =
-                new CourseService();
+        if(ModuleService.myInstance == null){
+            ModuleService.myInstance =
+                new ModuleService();
         }
         return this.myInstance;
     }
 
-    createCourse = course => {
-        return fetch(this.apiString+`/api/courses`, {
+    createModuleForCourse = (cid, module) => {
+        return fetch(this.apiString+"/api/courses/"+cid, {
             method: 'POST',
-            body: JSON.stringify(course),
+            body: JSON.stringify(module),
             headers: {
                 'content-type': 'application/json'
             }
@@ -26,22 +26,22 @@ export default class CourseService{
             .then(response => response.json())
     }
 
-    findAllCourses = () => {
-        return fetch(this.apiString+"/api/courses")
-            .then(response => response.json())
-    }
-
-    findCourseById = (cid) => {
-
+    findAllModulesForCourse = (cid) => {
         return fetch(this.apiString+"/api/courses/"+cid)
             .then(response => response.json())
     }
 
-    updateCourse = (cid, course) => {
+    findModuleById = (id) => {
 
-        return fetch(this.apiString+"/api/courses/"+cid, {
+        return fetch(this.apiString+"/api/modules/"+id)
+            .then(response => response.json())
+    }
+
+    updateModule = (id, module) => {
+
+        return fetch(this.apiString+"/api/modules/"+id, {
             method: 'PUT',
-            body: JSON.stringify(course) ,
+            body: JSON.stringify(module) ,
 
             headers: {
                 'content-type': 'application/json'
@@ -50,8 +50,8 @@ export default class CourseService{
             .then(response => response.json())
     }
 
-    deleteCourse = (cid) => {
-        return fetch(this.apiString+"/api/courses/"+cid, {
+    deleteModule = (id) => {
+        return fetch(this.apiString+"/api/modules/"+id, {
             method: 'DELETE'
         })
             .then(response => response.json())
