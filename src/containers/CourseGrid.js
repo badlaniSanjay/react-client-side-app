@@ -31,13 +31,12 @@ class CourseGrid extends Component {
 
     createCourse = () =>{
 
-        this.state.course.id = new Date().getTime();
+        // this.state.course.id = new Date().getTime();
 
         CourseService.getInstance().createCourse(this.state.course).then(courses => this.setState({
             courses: Array.from(courses),
             course:{
-                title:'New Course',
-                id: new Date().getTime()
+                title:'New Course'
             }
         }))
 
@@ -49,8 +48,7 @@ class CourseGrid extends Component {
     changeTitle = (event) =>{
         this.setState({
                           course:{
-                              title:event.target.value,
-                              id: new Date().getTime()
+                              title:event.target.value
                           }
                       })
     }

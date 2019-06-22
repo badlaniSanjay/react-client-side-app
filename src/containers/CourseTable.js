@@ -30,13 +30,12 @@ class CourseTable extends Component{
 
     createCourse = () =>{
 
-        this.state.course.id = new Date().getTime();
+        // this.state.course.id = new Date().getTime();
 
         CourseService.getInstance().createCourse(this.state.course).then(courses => this.setState({
             courses: Array.from(courses),
             course:{
-                title:'New Course',
-                id: new Date().getTime()
+                title:'New Course'
             }
         }))
 
@@ -57,8 +56,7 @@ class CourseTable extends Component{
 
         this.setState({
             course:{
-                title:event.target.value,
-                id: new Date().getTime()
+                title:event.target.value
             }
                       })
         // CourseService.getInstance().updateCourse(this.state.coid, this.state.course).then(courses =>this.setState({

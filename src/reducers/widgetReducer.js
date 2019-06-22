@@ -24,7 +24,7 @@ const widgetReducer = (state={widgets: widgets, edit:"0"}, action) => {
         case 'REORDER_ITEMS':
             return {
                 // widgets: newWidgets.splice(position + action.direction, 0, item)
-                widgets : widgetService.reorderItems(action.direction, action.widgetId),
+                widgets : widgetService.reorderItems(action.direction, action.widgetId, action.widgets),
                 edit: state.edit
             }
             break;

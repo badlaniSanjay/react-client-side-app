@@ -4,8 +4,8 @@ class WidgetService {
 
     static myInstance = null;
     widgets = Widgets;
-    apiString = "https://fierce-sea-47240.herokuapp.com/";
-    // apiString = "http://localhost:8080";
+    // apiString = "https://fierce-sea-47240.herokuapp.com";
+    apiString = "http://localhost:8080";
 
     static getInstance() {
         if (WidgetService.myInstance == null) {
@@ -60,16 +60,16 @@ class WidgetService {
 
 
 
-    reorderItems = (direction, wid )=>{
-        const position = this.widgets.findIndex((i) => i.id === wid)
+    reorderItems = (direction, wid, widgets )=>{
+        const position = widgets.findIndex((i) => i.id === wid)
         if(position === 0 && direction === -1){
-        return this.widgets;
+        return widgets;
         }
-        const item = this.widgets[position] // save item for later
-        this.widgets = this.widgets.filter((i) => i.id != wid) // remove item from array
+        const item = widgets[position] // save item for later
+        widgets = widgets.filter((i) => i.id != wid) // remove item from array
 
-        this.widgets.splice(position+direction, 0, item)
-        return this.widgets;
+        widgets.splice(position+direction, 0, item)
+        return widgets;
     }
     enableEditing = (editing) => {
         this.widgets = this.widgets.map(widget => widget.editing = editing)

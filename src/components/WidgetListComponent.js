@@ -69,13 +69,13 @@ class WidgetListComponent extends React.Component {//({widgets, deleteWidget, cr
 
                                         <div className="btn col-sm-4">
 
-                          <span className="fa-stack mx-2" onClick={() => this.props.reorderItems(-1, widget.id)}>
+                          <span className="fa-stack mx-2" onClick={() => this.props.reorderItems(-1, widget.id, this.props.widgets)}>
                               {index != 0 && <i className="fa fa-square fa-stack-2x"></i>}
                               {index != 0 && <i className="fa fa-arrow-up  fa-stack-1x fa-inverse"></i>}
                              </span>
 
 
-                                            <span className="fa-stack mx-2" onClick={() => this.props.reorderItems(1, widget.id)}>
+                                            <span className="fa-stack mx-2" onClick={() => this.props.reorderItems(1, widget.id, this.props.widgets)}>
                              {index != this.props.widgets.length - 1 && <i className="fa fa-square fa-stack-2x"></i>}
                                                 {index != this.props.widgets.length - 1 &&
                                                 <i className="fa fa-arrow-down  fa-stack-1x fa-inverse"></i>}

@@ -97,11 +97,12 @@ const propsToDispatcher = dispatch => ({
             widget: widget
         }))
     },
-    reorderItems: (direction, wid) =>{
+    reorderItems: (direction, wid, widgets) =>{
         dispatch({
             type: 'REORDER_ITEMS',
             widgetId: wid,
-            direction: direction
+            direction: direction,
+            widgets: widgets
         })
     },
     enableEditing:(editing) =>{
